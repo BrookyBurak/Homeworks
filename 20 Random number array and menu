@@ -1,0 +1,57 @@
+#include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
+
+int main()
+{
+    int choice, index, value;
+    int array[20];
+
+   	//we got a random number
+    srand(time(NULL));
+
+    for(int i = 0; i < 20; i++)
+    {
+        array[i] = rand();
+    }
+
+    // Input and menu choices
+    printf("****************-MENU-****************\n\n");
+    printf("1-) Which index do you want to see?:\n\n");
+    printf("2-) See the values in indexes between 5 and 10:\n\n");
+    printf("3-) Type the value you want to change in specific index:\n\n");
+    printf("Your Choice: ");
+    scanf("%d", &choice);
+
+    switch(choice)
+    {
+        case 1:
+            printf("Which index do you want to see?: ");
+            scanf("%d", &index);
+            printf("Value at that index %d: %d\n", index, array[index]);	//first option
+            break;
+
+        case 2:
+            printf("Indexes between 5th and 10th:\n");
+            for(int i = 5; i <= 10; i++)
+            {																//second option
+                printf("%d\n", array[i]);
+            }
+            break;
+
+        case 3:
+            printf("Type the index you want to change: ");
+            scanf("%d", &index);
+            printf("New value: ");
+            scanf("%d", &value);											//third option
+            array[index] = value;
+            for(index=0;index<20;index++)
+            printf("The new Array %d: %d\n", index, array[index]);
+            break;
+
+        default:
+            printf("Wrong input please choose between 1 and 3!\n");
+    }
+
+    return 0;
+}
