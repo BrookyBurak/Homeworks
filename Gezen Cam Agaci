@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <conio.h>
+#include <windows.h>
+
+int main(){
+	
+    int i, j, k, delay;    // i satir, j bosluk, k yildiz, delay yazdırma gecikmesi.
+    
+	system("cls");			//windows os ler icin program her basladıgında sekli siliyor.
+    for (delay = 1; delay <= 60; delay++) {  // loop through x-coordinates from 1 to 60
+        system("cls");
+		
+		  /* cam agaci cizme programi */
+    for (i = 1; i <= 3; i++) {  
+        for (j = 1; j <= (7 - i) + delay; j++) {
+        printf(" ");
+        }
+            for (k = 1; k <= (2 * i - 1); k++) {
+                printf("*");
+            }
+            printf("\n");
+        }
+        
+    for (i = 4; i <= 6; i++) {  
+        for (j = 3; j <= (11 - i) + delay; j++) {  	//her bosluk bırakma isleminde gecikme ekliyoruz ki program 80 kere ilerleyebilsin.
+        printf(" ");
+        }
+            for (k = 5; k <= (2 *i - 1); k++) {
+                printf("*");
+            }
+            printf("\n");
+        }
+        
+    for (i = 6; i <= 9; i++) {  
+        for (j = 2; j <= (11 - i) + delay; j++) {  
+        printf(" ");
+        }
+            for (k = 7; k <= (2 *i - 1); k++) {
+                printf("*");
+            }
+            printf("\n");
+        }
+        
+    for (i = 1; i <7 + delay; i++) {  
+        printf(" ");
+        }
+        printf("|\n");
+       
+	    Sleep(100);  //her silme isleminde 0.1 saniye bekliyor.
+    }
+    return 0;
+}
