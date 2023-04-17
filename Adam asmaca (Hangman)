@@ -1,0 +1,78 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <time.h>
+
+void oyun()
+{
+    int hata = 0;
+    int harf,tahmin;
+    srand(time(NULL));
+    
+    //oyunun sehirleri
+    char sehirler[7][15] = {"malatya","kahramanmaras","bartin","askabat","ankara","gaziantep","karaman"};  
+
+    //adam asmaca oyun mekanikleri  
+    int index = rand() % 7;                                
+    char *sehir = sehirler[index];                        
+    int len = strlen(sehir);                            
+    for(int i = 0; i < len; i++)
+    {
+        printf("_ ");                                    
+    }
+    printf("\n");
+    
+    char tahminler[13];                    
+    memset(tahminler, '_', len);            //tahmin sayilari ve sehir harfleri kadar alttire verisini aldik.
+    
+    while (hata < 6) {
+        printf("Lutfen bir harf girin: ");
+        scanf(" %c", &harf);
+        if (strchr(sehir, harf) == NULL) {
+            hata++;
+            //adamimizi cizdirdik.
+            switch(hata){
+                case 1: printf("---------\n|       |\n|\n|\n|\n|\n"); 
+                break;
+                case 2: printf("---------\n|       |\n|       O\n|\n|\n|\n"); 
+                break;
+                case 3: printf("---------\n|       |\n|       O\n|       |\n|\n|\n"); 
+                break;
+                case 4: printf("---------\n|       |\n|       O\n|      /|\n|\n|\n"); 
+                break;
+                case 5: printf("---------\n|       |\n|       O\n|      /|\\\n|\n|\n"); 
+                break;
+                case 6: printf("---------\n|       |\n|       O\n|      /|\\\n|      / \\"); 
+                break;
+            }
+            if(hata == 6){
+                printf("\n--OYUN BITTI !--\n");
+                break;
+            }
+        } else {
+            printf("Dogru tahmin!\n");
+            // Alt tireleri karakterlerle degistirme.
+            for (int i = 0; i < len; i++) {
+                if (sehir[i] == harf) {
+                    tahminler[i] = harf;
+                }
+            }
+            
+            for (int i = 0; i < len; i++) {
+                printf("%c ", tahminler[i]);    //alttireleri kaldirma.
+            }
+            printf("\n");
+            
+            // Tum karakterlerin tahmin edildigini kontrol etme.
+            if (strcmp(sehir, tahminler) == 0) {
+                printf("--KAZANDINIZ !--\n");
+                break;
+            }
+        }
+    }
+}
+int main()
+{
+    oyun();
+    return 0;
+}
