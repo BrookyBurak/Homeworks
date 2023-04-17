@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <string.h>
+
+void kelime()
+{
+    //asagida alfabe ve sesli harfleri tanimladik ve 300 harf kapasiteli bir metin girdisi aldik.
+    printf("*******************---BOBBY'NIN METIN ANALIZORU---*******************\n");
+    int sayac = 0, sayac2 = 1, sayac3 = 0, sayac4 = 0; // initialize counters
+    char metin[300]; 				
+    char sesharf[] = "aeıioöuü";
+
+    fgets(metin, sizeof(metin), stdin); // metnin uzunluğunun bir eksigi kadar uzunlugu okudu.
+    metin[strcspn(metin, "\n")] = '\0'; // strcspn eger ayni karakterle bir karsilasma olursa onu saymadi.
+
+    for (int i = 0; metin[i] != '\0'; i++) { // bosluk haric tum karakterleri saydi ve bunu sayaca kaydetti.
+        if (metin[i] != ' ') {
+            sayac++;
+        }
+        if (metin[i] == ' ' && metin[i - 1] != ' ') { // sadece kelime aralarindaki bosluklari sayarak kelimeleri saydi.
+            sayac2++;
+        }
+        if (strchr(sesharf, metin[i]) != NULL) { // sadece sesli harfleri saydi. strchr istedigimiz harfleri ariyor.
+            sayac3++;
+        }
+        if (metin[i] == '.') { // noktalarla cumleleri saydi.
+            sayac4++;
+        }
+    }
+
+    //programimizin menusu.
+    printf("Metin kac harf iceriyor: %d \nMetin kac kelimeden olusuyor: %d \nMetindeki sesli harf adeti: %d \nMetin kac cumleden olusuyor: %d ", sayac, sayac2, sayac3, sayac4);
+}
+
+int main()
+{
+    kelime();
+    return 0;
+}
