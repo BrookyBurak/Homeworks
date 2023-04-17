@@ -1,0 +1,78 @@
+#include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
+
+void matrix(void);
+
+void matrix()
+{
+    int dizi[100];
+    int j,k,a,secim;
+    srand(time(NULL));
+    for(int i=0;i<100;i++)
+    {
+        dizi[i] = rand() % 500 + 100;
+    }
+    printf("Dizi elemanlari: ");
+    for(int i = 0; i < 100; i++)
+    {
+        printf("%d ", dizi[i]);
+    }
+    printf("\n");
+    
+    printf("Matris hangi yone siralansin? (kuc-buyuk = 0 ; buyuk-kucuk = 1) ");
+    scanf("%d",&secim);
+
+    switch(secim)
+    {
+        case 0:
+            printf("Matrisin kuc-buyuge siralanmasi:\n");
+            for (int i = 0; i < 100; ++i)
+            {
+                for (j = i + 1; j < 100; ++j)
+                {
+                    if (dizi[i] > dizi[j])
+                    {
+                        a = dizi[i];
+                        dizi[i] = dizi[j];
+                        dizi[j] = a;
+                    }
+                }
+            }
+            for(j=0;j<100;j++)
+            {
+            	printf("%d ",dizi[j]);
+			}
+			printf("\n");
+            break;
+        case 1:
+            printf("Matrisin buyuk-kucuge siralanmasi:\n");
+            for (int i= 0; i<100;i++)
+            {
+                for (j = i + 1; j < 100; ++j)
+                {
+                    if (dizi[i] < dizi[j])
+                    {
+                        a = dizi[i];
+                        dizi[i] = dizi[j];
+                        dizi[j] = a;
+                    }
+                }
+            }
+            for(j=0;j<100;j++)
+            {
+            	printf("%d ",dizi[j]);
+			}
+			printf("\n");
+            break;
+        default:
+            printf("Gecersiz secim!\n");
+            break;
+    }
+}
+
+int main()
+{
+    matrix();
+    return 0;
+}
